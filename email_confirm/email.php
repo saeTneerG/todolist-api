@@ -21,7 +21,7 @@ function sendMail($toMail, $toName, $activation_token) {
 
         $mail->isHTML(true);
         $mail->Subject = 'Account Activation';
-        $mail->Body    = 'Click <a href="http://localhost/todolist/email_confirm/activation_account.php?token=' . $activation_token . '">here</a> to activate you account.';
+        $mail->Body    = 'Click <a href="http://localhost/todolist-api/email_confirm/activation_account.php?token=' . $activation_token . '">here</a> to activate you account.';
 
         $mail->send();
         return true;

@@ -48,6 +48,12 @@ if ($stmt->execute()) {
     require "email_confirm/email.php";
     $user_id = $con->insert_id;
 
+    $send_email = sendMail(
+        $email,
+        $name,
+        $activation_token
+    );
+
     echo json_encode([
         'status' => 'success',
         'message' => 'User registered successfully',
@@ -57,12 +63,6 @@ if ($stmt->execute()) {
             'email' => $email
         ]
     ]);
-
-    $send_email = sendMail(
-        $email,
-        $name,
-        $activation_token
-    );
 } else {
     echo json_encode([
         'status' => 'error',
