@@ -1,5 +1,6 @@
 <?php
 require "connect.php";
+require "email_confirm/email.php";
 
 if (!$con) {
     echo json_encode([
@@ -45,7 +46,6 @@ $stmt = $con->prepare("INSERT INTO user (name, email, password, account_activati
 $stmt->bind_param("ssss", $name, $email, $hashed_password, $activation_token_hash);
 
 if ($stmt->execute()) {
-    require "email_confirm/email.php";
     $user_id = $con->insert_id;
 
     $send_email = sendMail(
